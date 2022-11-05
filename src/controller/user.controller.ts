@@ -1,7 +1,7 @@
-import {Request, Response} from 'express'
+import { Request, Response } from 'express'
 import { omit } from 'lodash'
-import {createUser} from '../service/user.service'
-import log from "../logger";
+import { createUser } from '../service/user.service'
+import log from '../logger';
 
 export async function createUserHandler(req: Request, res: Response) {
     try {
@@ -15,7 +15,7 @@ export async function createUserHandler(req: Request, res: Response) {
 
 export async function createUserSessionHandler(req: Request, res: Response) {
     // validate the email and password
-
+    
     // Create a session
 
     // Create access token

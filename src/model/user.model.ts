@@ -37,7 +37,7 @@ UserSchema.pre("save", async function (next: mongoose.HookNextFunction) {
     return next();
   });
 
-UserSchema.methods.comparePassword = async function name(
+UserSchema.methods.comparePassword = async function (
     candidatePassword: string
 ) {
     const user = this as UserDocument;
@@ -45,6 +45,6 @@ UserSchema.methods.comparePassword = async function name(
     return bcrypt.compare(candidatePassword, user.password).catch((e) => false);
 };
 
-const User = mongoose.model("User", UserSchema);
+const User = mongoose.model<UserDocument>("User", UserSchema);
 
 export default User;
