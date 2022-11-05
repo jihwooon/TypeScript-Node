@@ -7,3 +7,7 @@ Content-Type:application/json
     "paasswirdCibfurnatuib": "1234",
     "name": "kim",
 }
+
+###
+
+GET http://localhost:1337/healthcheck
