@@ -6,15 +6,48 @@ import { createUserSessionHandler, invalidateUserSessionHandler, getUserSessions
 import { createPostSchema, updatePostSchema, deletePostSchema } from './schema/post.schema'
 import { createPostHandler, deletePostHandler, getPostHandler, updatePostHandler } from './controller/post.controller'
 
-export default function (app: Express) {
+export default function(app:Express) {
 
-    app.get('/healthcheck', (req: Request, res: Response) => res.sendStatus(200))
+    /**
+    * @openapi
+    * /healthcheck:
+    *  get:
+    *     tags:
+    *     - Healthcheck
+    *     description: Responds if the app is up and running
+    *     responses:
+    *       200:
+    *         description: App is up and running
+    */
+    app.get('/healthcheck', (req: Request, res:Response) => res.sendStatus(200))
 
-    app.post(
-        '/api/users',
-        validateRequest(createUserSchema),
-        createUserHandler
-    );
+
+    /**
+     * @openapi
+     * '/api/users':
+     * post:
+     *  tags:
+     *  - User
+     *      summary: Register a user
+     *      requestBody:
+     *        required: true
+     *        content:
+     *          application:/json:
+     *              schema:
+     *                 $ref: '#/components/schemas/CreateUserInput'
+     *      responses:
+     *      200:
+     *        description: Success
+     *        content:
+     *          application/json:
+     *              schema:
+     *                 $ref: '#/components/schemas/CreateUserResponse'
+     *      409:
+     *        description: Conflict
+     *      400:
+     *        description: Bad request
+     */
+    app.post('/api/users', validateRequest(createUserSchema), createUserHandler);
 
     // POST /api/sessions
     app.post('/api/sessions', validateRequest(createUserSessionSchema), createUserSessionHandler);
