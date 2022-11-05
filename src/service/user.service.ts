@@ -10,7 +10,7 @@ export async function createUser(input: DocumentDefinition<UserDocument>) {
     }
 }
 
-function findUser(query: FilterQuery<UserDocument>) {
+export async function findUser(query: FilterQuery<UserDocument>) {
     return User.findOne(query).lean();
 }
 
