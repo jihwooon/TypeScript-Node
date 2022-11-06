@@ -49,5 +49,4 @@ export default function (app: Express) {
         [requiresUser, validateRequest(deletePostSchema)],
         deletePostHandler
     );
-
 }
