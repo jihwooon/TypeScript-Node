@@ -12,10 +12,7 @@ export async function createSession(userId: string, userAgent: string) {
   return session.toJSON();
 }
 
-export function createAccessToken({
-  user,
-  session,
-}: {
+export function createAccessToken({ user, session }: {
   user:
   | Omit<UserDocument, "password">
   | LeanDocument<Omit<UserDocument, "password">>;
@@ -32,11 +29,7 @@ export function createAccessToken({
   return accessToken;
 }
 
-export async function reIssueAccessToken({
-  refreshToken
-}: {
-  refreshToken: string
-}) {
+export async function reIssueAccessToken( { refreshToken }: { refreshToken: string } ) {
 
   const { decoded } = decode(refreshToken);
 
